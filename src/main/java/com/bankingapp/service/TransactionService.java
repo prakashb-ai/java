@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.bankingapp.model.Transaction;
 import com.bankingapp.repository.TransactionRepository;
 
@@ -19,6 +18,6 @@ public class TransactionService {
     }
 
     public List<Transaction> getTransactionsByAccountNumber(String accountNumber) {
-        return transactionRepository.findBySenderAccount_AccountNumberOrRecipientAccount_AccountNumber(accountNumber, accountNumber);
+        return transactionRepository.findBySenderAccountAccountNumberOrRecipientAccountAccountNumber(accountNumber, accountNumber);
     }
 }
