@@ -1,19 +1,13 @@
-FROM openjdk:8-jdk-alpine
+FROM maven:3.8.5-openjdk-17 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Add Maintainer Info
-LABEL maintainer="prakashbodi@gmail.com"
-
-# Add a volume pointing to /tmp
-VOLUME /tmp
-
-# Make port 8080 available to the world outside this container
-EXPOSE 8080
-
-# The application's jar file
-ARG JAR_FILE=target/spring-boot-app-1.0.0.jar
-
-# Add the application's jar to the container
+FROM openjdk:17.0.1-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/EBANKING-SERVICE-0.0.1-SNAPSHOT.jar EBANKING-SERVICE.jar
+ARG JAR_FILE=EBANKING-SERVICE.jar
 ADD ${JAR_FILE} app.jar
 
-# Run the jar file
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+# Run the Spring Boot application when the container starts
+ENTRYPOINT ["java","-jar","/app.jar"]
