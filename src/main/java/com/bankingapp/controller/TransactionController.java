@@ -1,9 +1,7 @@
 package com.bankingapp.controller;
 
 import java.time.LocalDateTime;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,12 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.bankingapp.model.Transaction;
-import com.bankingapp.service.TransactionService;
+import com.bankingapp.service.TransactionService; // Ensure this import is correct
 
 @RestController
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/transactions")
 public class TransactionController {
 
