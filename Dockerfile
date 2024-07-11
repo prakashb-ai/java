@@ -5,7 +5,7 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
 WORKDIR /app
-COPY --from=build /app/target/EBANKING-SERVICE-0.0.1-SNAPSHOT.jar project.jar
+COPY --from=build /app/target/project-0.0.1-SNAPSHOT.jar project.jar
 ARG JAR_FILE=project.jar
 ADD ${JAR_FILE} app.jar
 
