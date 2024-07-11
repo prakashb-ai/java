@@ -5,7 +5,8 @@ RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
 WORKDIR /app
-ARG JAR_FILE=EBANKING-SERVICE.jar
+COPY --from=build /app/target/EBANKING-SERVICE-0.0.1-SNAPSHOT.jar project.jar
+ARG JAR_FILE=project.jar
 ADD ${JAR_FILE} app.jar
 
 # Run the Spring Boot application when the container starts
