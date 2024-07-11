@@ -2,17 +2,13 @@ package com.bankingapp.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import com.bankingapp.model.Transaction;
-import com.bankingapp.service.TransactionService; // Ensure this import is correct
+import com.bankingapp.service.TransactionService;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,7 +20,7 @@ public class TransactionController {
 
     @PostMapping
     public Transaction createTransaction(@RequestBody Transaction transaction) {
-        transaction.setTimestamp(LocalDateTime.now());
+        transaction.setTimestamp(LocalDateTime.now()); // Ensure Transaction class has setTimestamp method
         return transactionService.createTransaction(transaction);
     }
 
