@@ -1,17 +1,23 @@
-package com.bankingapp.repository;
+package com.bankingapp.service;
 
 import java.util.List;
 
-
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.bankingapp.model.Transaction;
+import com.bankingapp.repository.TransactionRepository;
 
-@Repository
-public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+@Service
+public class TransactionService {
 
-	 List<Transaction> findBySenderAccountAccountNumberOrRecipientAccountAccountNumber(String senderAccountNumber, String recipientAccountNumber);
+    @Autowired
+    private TransactionRepository transactionRepository;
 
+    public Transaction createTransaction(Transaction transaction) {
+        return transactionRepository.save(transaction);
+    }
+
+    public List<Transaction> getTransactionsByAccountNumber(String accountNumber) {
+        return transactionRepository.findBySenderAccountAccountNumberOrRecipientAccountAccountNumber(accountNumber, accountNumber);
+    }
 }
