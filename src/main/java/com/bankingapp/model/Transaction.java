@@ -1,8 +1,14 @@
 package com.bankingapp.model;
 
-import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
+
+
+import jakarta.persistence.*;
+i
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Entity
 @Data
@@ -19,6 +25,8 @@ public class Transaction {
     private LocalDateTime timestamp;
 
     private String remarks;
+
+    // Other fields as needed
 
     @ManyToOne
     @JoinColumn(name = "sender_account_id")

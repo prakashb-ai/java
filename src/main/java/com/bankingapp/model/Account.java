@@ -1,13 +1,20 @@
 package com.bankingapp.model;
 
+import java.util.List;
+
+
 import jakarta.persistence.*;
 
-import java.util.List;
+i
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+
 public class Account {
 
     @Id
@@ -18,9 +25,10 @@ public class Account {
 
     private Double balance;
 
+    // Other fields as needed
     @ManyToOne
-    private Applicant applicant;
-
+    private Applicant applicant; 
+    
     @OneToMany(mappedBy = "senderAccount", cascade = CascadeType.ALL)
     private List<Transaction> sentTransactions;
 
